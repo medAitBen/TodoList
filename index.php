@@ -76,21 +76,51 @@ $stmt->close();
 <title>To-Do List - PIN Lock</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  .pin-input { letter-spacing: 10px; font-size: 2rem; text-align: center; background: transparent; border: none; border-bottom: 2px solid #3b82f6; outline: none; color: #3b82f6; width: 150px; }
-  .pin-pad { display: grid; grid-template-columns: repeat(3, 80px); gap: 10px; margin-top: 20px; }
-  .pin-btn { background: white; border: 1px solid #ccc; font-size: 1.5rem; padding: 15px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
-  .pin-btn:hover { background: #f3f4f6; }
+  .pin-input {
+  letter-spacing: 10px;
+  font-size: 2rem;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #3b82f6;
+  outline: none;
+  color: #3b82f6;
+  width: 150px;
+  margin: 0 auto; /* centré */
+}
+.pin-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 10px;
+  justify-content: center; /* centre le pad */
+}
+.pin-btn {
+  background: white;
+  border: 1px solid #ccc;
+  font-size: 1.5rem;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.pin-btn:hover {
+  background: #f3f4f6;
+}
+
 </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
 
 <!-- Écran PIN -->
-<div id="pin-screen" class="bg-white shadow-lg rounded-xl p-8 w-full max-w-sm text-center" style="display:none">
-  <h1 class="text-2xl font-bold mb-4" id="pin-title">🔑 Créez votre PIN</h1>
-  <input id="pin-input" class="pin-input" type="password" maxlength="6" placeholder=""/>
-  <div class="pin-pad mt-4" id="pin-pad"></div>
-  <button id="reset-btn" class="mt-4 text-sm text-red-500 hover:underline">Réinitialiser (efface tout)</button>
+<div id="pin-screen" class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-sm text-center">
+    <h1 class="text-2xl font-bold mb-4" id="pin-title">🔑 Créez votre PIN</h1>
+    <input id="pin-input" class="pin-input" type="password" maxlength="6" placeholder="" readonly />
+    <div class="pin-pad mt-4" id="pin-pad"></div>
+    <button id="reset-btn" class="mt-4 text-sm text-red-500 hover:underline">Réinitialiser (efface tout)</button>
+  </div>
 </div>
+
 
 <!-- Todo List -->
 <div id="todo-app" class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md" style="display:none">
